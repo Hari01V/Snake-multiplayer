@@ -45,17 +45,18 @@ io.on("connection", (socket) => {
   };
 
   const handleJoinGame = (gameCode) => {
-    const room = io.sockets.adapter.rooms[gameCode];
-    console.log(io.sockets.adapter.rooms.get(gameCode))
-    let allUsers;
-    if (room) {
-      allUsers = room.sockets;
-    }
+    // const room = io.sockets.adapter.rooms[gameCode];
+    // console.log(io.sockets.adapter.rooms.get(gameCode).size);
+    // let allUsers;
+    // if (room) {
+    //   allUsers = room.sockets;
+    // }
 
     let numClients = 0;
-    if (allUsers) {
-      numClients = Object.keys(allUsers).length;
-    }
+    // if (allUsers) {
+    //   numClients = Object.keys(allUsers).length;
+    // }
+    numClients = io.sockets.adapter.rooms.get(gameCode).size;
 
     if (numClients === 0) {
       socket.emit("unknownGame");
